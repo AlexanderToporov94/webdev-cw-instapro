@@ -1,18 +1,24 @@
 export function saveUserToLocalStorage(user) {
-  window.localStorage.setItem("user", JSON.stringify(user));
+  window.localStorage.setItem('user', JSON.stringify(user));
 }
 
 export function getUserFromLocalStorage(user) {
   try {
-    return JSON.parse(window.localStorage.getItem("user"));
+    return JSON.parse(window.localStorage.getItem('user'));
   } catch (error) {
     return null;
   }
 }
 
 export function removeUserFromLocalStorage(user) {
-  window.localStorage.removeItem("user");
+  window.localStorage.removeItem('user');
 }
+
+export const getToken = () => {
+  const user = getUserFromLocalStorage();
+  const token = user ? `Bearer ${user.token}` : undefined;
+  return token;
+};
 
 export function formatDate(date) {
   let diff = new Date() - date;
